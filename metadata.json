@@ -1,0 +1,8 @@
+{
+  "name": "Lumina AI - Personalized Learning Companion",
+  "description": "An intelligent learning platform that generates custom-tailored educational paths, interactive quizzes, and progress analytics using Gemini AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
