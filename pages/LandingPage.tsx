@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { APP_LOGO_URL } from '../types';
 
 interface Props {
   onNavigate: (page: string) => void;
@@ -9,73 +10,72 @@ interface Props {
 
 const LandingPage: React.FC<Props> = ({ onNavigate, isDarkMode, toggleTheme }) => {
   return (
-    <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-950 transition-colors duration-300 selection:bg-indigo-100 dark:selection:bg-indigo-900">
       {/* Navbar */}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <div className="bg-indigo-600 p-2 rounded-lg">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <img src={APP_LOGO_URL} alt="Lumina Logo" className="w-10 h-10 rounded-full shadow-lg ring-2 ring-indigo-50 dark:ring-slate-800" />
           <span className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight transition-colors">Lumina AI</span>
         </div>
         <div className="flex items-center space-x-4">
-          <button onClick={toggleTheme} className="p-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition">
+          <button onClick={toggleTheme} className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition">
             {isDarkMode ? '☀️' : '🌙'}
           </button>
-          <button onClick={() => onNavigate('login')} className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 font-medium transition">Login</button>
-          <button onClick={() => onNavigate('signup')} className="bg-indigo-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-100 dark:shadow-indigo-900/20">Get Started</button>
+          <button onClick={() => onNavigate('login')} className="text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-white font-semibold transition px-4">Login</button>
+          <button onClick={() => onNavigate('signup')} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full font-bold hover:scale-105 transition transform shadow-lg">Get Started</button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 text-center">
-        <h1 className="text-5xl sm:text-7xl font-extrabold text-slate-900 dark:text-slate-100 mb-8 leading-tight transition-colors">
-          Your Personalized <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI Learning Companion</span>
+      <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32 text-center relative">
+        {/* Ambient Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-500/10 dark:bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+        
+        <h1 className="text-6xl sm:text-8xl font-black text-slate-900 dark:text-slate-100 mb-8 leading-tight transition-colors tracking-tighter">
+          Unlock your <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-500 animate-gradient-x">full potential.</span>
         </h1>
-        <p className="max-w-2xl mx-auto text-xl text-slate-500 dark:text-slate-400 mb-12 leading-relaxed transition-colors">
-          Master any subject with custom learning paths, interactive quizzes, and 24/7 AI tutoring. Built to adapt to your unique pace and style.
+        <p className="max-w-2xl mx-auto text-xl text-slate-500 dark:text-slate-400 mb-12 leading-relaxed font-medium">
+          Lumina isn't just a course platform. It's a personalized AI companion that adapts to your curiosity, schedule, and pace.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <button onClick={() => onNavigate('signup')} className="w-full sm:w-auto bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition transform hover:-translate-y-1 shadow-xl shadow-indigo-200 dark:shadow-indigo-900/40">
-            Start Learning for Free
+          <button onClick={() => onNavigate('signup')} className="w-full sm:w-auto bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition transform hover:-translate-y-1 shadow-xl shadow-indigo-500/20">
+            Start Your Journey
           </button>
           <button 
             onClick={() => onNavigate('about')}
-            className="w-full sm:w-auto border-2 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+            className="w-full sm:w-auto bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
           >
-            See How it Works
+            Our Philosophy
           </button>
         </div>
       </header>
 
-      {/* Features */}
-      <section className="bg-slate-50 dark:bg-slate-900/50 py-24 transition-colors">
+      {/* Features - Floating Cards */}
+      <section className="bg-slate-50/50 dark:bg-slate-900/50 py-32 transition-colors relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Adaptive Learning Paths',
-                desc: 'Gemini AI generates optimized day-by-day plans based on your goals and schedule.',
-                icon: '🚀'
+                title: 'Adaptive Pathways',
+                desc: 'No two brains are alike. Your roadmap evolves daily based on what you actually master.',
+                icon: '🌱'
               },
               {
-                title: 'Intelligent Quizzing',
-                desc: 'Get instant feedback and adaptive difficulty levels that challenge you just right.',
-                icon: '🎯'
+                title: 'Conversational Checks',
+                desc: 'Forget boring tests. Prove your skills through natural conversations with our AI tutor.',
+                icon: '💬'
               },
               {
-                title: 'Deep Analytics',
-                desc: 'Track your progress with visual insights into your strong and weak areas.',
-                icon: '📊'
+                title: 'Growth Visualization',
+                desc: 'Watch your knowledge tree grow. Beautiful, motivating analytics that show your real progress.',
+                icon: '📈'
               }
             ].map((f, i) => (
-              <div key={i} className="bg-white dark:bg-slate-900 p-10 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition">
-                <div className="text-4xl mb-6">{f.icon}</div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">{f.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{f.desc}</p>
+              <div key={i} className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 border border-slate-100 dark:border-slate-800">
+                <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-3xl mb-8">{f.icon}</div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight">{f.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -83,13 +83,13 @@ const LandingPage: React.FC<Props> = ({ onNavigate, isDarkMode, toggleTheme }) =
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 dark:text-slate-600 transition-colors flex flex-col items-center">
-        <p className="mb-4">© 2026 Lumina AI Learning Companion. All rights reserved.</p>
+      <footer className="py-12 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 dark:text-slate-600 transition-colors flex flex-col items-center bg-white dark:bg-slate-950">
+        <p className="mb-4 font-medium">© 2026 Lumina AI. Crafted with ❤️ for learners everywhere.</p>
         <button 
           onClick={() => onNavigate('presentation')}
           className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest hover:underline flex items-center"
         >
-          <span className="mr-2">📈</span> View Interactive Product Presentation
+          <span className="mr-2">✨</span> View Concept Deck
         </button>
       </footer>
     </div>

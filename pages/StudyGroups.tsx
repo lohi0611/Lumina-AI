@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { User, StudyGroup, GroupMessage, PerformanceRecord } from '../types';
+import { User, StudyGroup, GroupMessage, PerformanceRecord, APP_LOGO_URL } from '../types';
 import { chatWithAI } from '../geminiService';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -203,7 +203,10 @@ const StudyGroups: React.FC<Props> = ({ user, onBack, isDarkMode, toggleTheme })
 
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6">
           <div className="space-y-4">
-            <h2 className="text-2xl font-black tracking-tight">Study Hub</h2>
+            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+              <img src={APP_LOGO_URL} alt="Logo" className="w-8 h-8 rounded-full shadow-sm" />
+              Study Hub
+            </h2>
             
             {/* Search Bar */}
             <div className="relative group">
@@ -470,7 +473,9 @@ const StudyGroups: React.FC<Props> = ({ user, onBack, isDarkMode, toggleTheme })
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center p-12 text-center bg-slate-50 dark:bg-slate-950 transition-colors">
              <div className="relative mb-12">
-               <div className="w-40 h-40 bg-white dark:bg-slate-900 rounded-[4rem] shadow-2xl flex items-center justify-center text-7xl border border-slate-100 dark:border-slate-800 animate-float relative z-10">🪐</div>
+               <div className="w-40 h-40 bg-white dark:bg-slate-900 rounded-[4rem] shadow-2xl flex items-center justify-center text-7xl border border-slate-100 dark:border-slate-800 animate-float relative z-10">
+                 <img src={APP_LOGO_URL} alt="Lumina Logo" className="w-32 h-32 object-contain" />
+               </div>
                <div className="absolute inset-0 bg-indigo-500/20 blur-[80px] rounded-full scale-150 animate-pulse"></div>
              </div>
              <h2 className="text-5xl font-black mb-6 tracking-tighter text-slate-900 dark:text-white">Collaborative Space</h2>

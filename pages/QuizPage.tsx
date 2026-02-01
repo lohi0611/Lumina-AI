@@ -17,6 +17,7 @@ const QuizPage: React.FC<Props> = ({ path, onComplete, onCancel, language }) => 
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState(false);
   const [shortAnswerInput, setShortAnswerInput] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -145,17 +146,21 @@ const QuizPage: React.FC<Props> = ({ path, onComplete, onCancel, language }) => 
 
           <div className="flex flex-col gap-4">
             <button 
-              onClick={() => onComplete({
-                quizId: quiz.id,
-                score,
-                totalQuestions: quiz.questions.length,
-                accuracy,
-                timestamp: new Date().toLocaleDateString(),
-                xpEarned
-              })}
-              className="w-full bg-indigo-600 text-white py-6 rounded-3xl font-black text-xl hover:bg-indigo-700 transition shadow-2xl shadow-indigo-500/20 active:scale-95"
+              disabled={isSubmitting}
+              onClick={() => {
+                setIsSubmitting(true);
+                onComplete({
+                  quizId: quiz.id || 'quiz-unknown',
+                  score,
+                  totalQuestions: quiz.questions.length,
+                  accuracy,
+                  timestamp: new Date().toLocaleDateString(),
+                  xpEarned
+                });
+              }}
+              className="w-full bg-indigo-600 text-white py-6 rounded-3xl font-black text-xl hover:bg-indigo-700 transition shadow-2xl shadow-indigo-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Collect Rewards
+              {isSubmitting ? 'Processing...' : 'Collect Rewards'}
             </button>
             <button 
               onClick={handleDownloadReport}

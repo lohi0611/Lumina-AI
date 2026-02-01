@@ -3,7 +3,7 @@ import { User, LearningPath, PerformanceRecord } from '../types';
 /**
  * Local Storage Mock for Users
  */
-export const logToAudit = async (username: string, email: string, action: 'SIGNUP' | 'LOGIN') => {
+export const logToAudit = async (username: string, email: string, action: 'SIGNUP' | 'LOGIN' | 'SIGNUP_VIA_GOOGLE' | 'LOGIN_SIMULATION') => {
   console.log(`[AUDIT] User: ${username} (${email}), Action: ${action}, Time: ${new Date().toISOString()}`);
 };
 

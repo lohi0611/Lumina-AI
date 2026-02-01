@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { APP_LOGO_URL } from '../types';
 
 const SLIDES = [
   {
@@ -106,8 +107,8 @@ const Presentation: React.FC<Props> = ({ onExit }) => {
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 p-8 flex justify-between items-center z-10">
         <div className="flex items-center space-x-3">
-          <div className="bg-indigo-600 p-2 rounded-xl shadow-lg">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+          <div className="bg-white/10 p-1.5 rounded-xl shadow-lg border border-white/10">
+            <img src={APP_LOGO_URL} alt="Lumina Logo" className="w-8 h-8 rounded-full" />
           </div>
           <span className="font-black text-xl tracking-tighter uppercase opacity-80">Lumina Presentation</span>
         </div>

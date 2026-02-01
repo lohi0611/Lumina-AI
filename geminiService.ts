@@ -120,7 +120,14 @@ export const generateQuiz = async (
     }
   });
 
-  return JSON.parse(response.text || "{}");
+  const quizData = JSON.parse(response.text || "{}");
+
+  // Ensure ID exists and links to path for progress tracking
+  return {
+    ...quizData,
+    id: `${path.id}-day-${dayData.day}`,
+    day: dayData.day
+  };
 };
 
 export const chatWithAI = async (
@@ -129,7 +136,9 @@ export const chatWithAI = async (
   useThinking: boolean = false,
   language: string = "English"
 ): Promise<string> => {
-  const model = "gemini-3-pro-preview";
+  // Use gemini-3-pro-preview for deep thinking, and gemini-2.5-flash-lite for instant, low-latency responses
+  const model = useThinking ? "gemini-3-pro-preview" : "gemini-2.5-flash-lite";
+  
   const config: any = {
     systemInstruction: `You are Lumina, an expert and empathetic personal tutor.
       Current context: ${context}.
@@ -152,6 +161,34 @@ export const chatWithAI = async (
   });
 
   return response.text || "I'm sorry, I couldn't process that.";
+};
+
+export const quickAnalyze = async (text: string, action: 'summarize' | 'simplify', language: string): Promise<string> => {
+  const model = "gemini-2.5-flash-lite";
+  const prompt = action === 'summarize' 
+      ? `Provide a high-level, 1-sentence summary of this concept.` 
+      : `Rewrite this explanation to be simpler and easier to understand for a beginner.`;
+  
+  const response = await ai.models.generateContent({
+      model,
+      contents: `Context: ${text}\nTask: ${prompt}\nOutput Language: ${language}`,
+  });
+  return response.text || "";
+};
+
+export const simulateCodeExecution = async (code: string, language: string, context: string): Promise<string> => {
+  const response = await ai.models.generateContent({
+    model: "gemini-3-flash-preview",
+    contents: `Simulate the execution of the following code snippet. 
+    Language: ${language}
+    Context: ${context}
+    Code:
+    ${code}
+    
+    Return ONLY the exact console/terminal output. If there is an error in the code, return the error message as it would appear in a real compiler or runtime. Do not add any conversational text or explanations.`,
+  });
+
+  return response.text?.trim() || "No output generated.";
 };
 
 export const fetchTopicResources = async (topic: string, goal: string, language: string) => {

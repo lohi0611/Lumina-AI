@@ -5,6 +5,8 @@ export enum Difficulty {
   ADVANCED = 'Advanced'
 }
 
+export const APP_LOGO_URL = "data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='200' height='200' rx='100' fill='url(%23paint0_linear)'/%3E%3Cpath d='M100 40L115 85L160 100L115 115L100 160L85 115L40 100L85 85L100 40Z' fill='white'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='0' y1='0' x2='200' y2='200' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%237C3AED'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E";
+
 export interface Achievement {
   id: string;
   title: string;
